@@ -1,11 +1,19 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import { FiX } from 'react-icons/fi'
+import { FaCheckCircle } from 'react-icons/fa'
+
+import { ChallengesContext } from '../contexts/ChallengesContext'
 
 import styles from '../styles/components/Countdown.module.css'
 
+let countdownTimeout: NodeJS.Timeout
+
 export function Countdown() {
-	const [time, setTime] = useState(2 * 60)
-	const [active, setActive] = useState(false)
+	const { activeChallenge, startNewChallenge } = useContext(ChallengesContext)
+
+	const [time, setTime] = useState(0.1 * 60)
+	const [isActive, setIsActive] = useState(false)
+	const [hasFinished, setHasFinished] = useState(false)
 
 	const minutes = useMemo(() => {
 		return Math.floor(time / 60)
@@ -24,30 +32,34 @@ export function Countdown() {
 	}, [seconds])
 
 	function startCountdown() {
-		if (active) {
-			setActive(false)
+		setIsActive(true)
+	}
 
-			return
-		}
-
-		setActive(true)
+	function resetCountdown() {
+		clearTimeout(countdownTimeout)
+		setIsActive(false)
+		setTime(0.1 * 60)
 	}
 
 	useEffect(() => {
-		if (active && time > 0) {
-			setTimeout(() => {
+		if (isActive && time > 0) {
+			countdownTimeout = setTimeout(() => {
 				setTime(time - 1)
 			}, 1000)
 		}
 
-		if (!active) {
-			setTime(2 * 60)
+		if (isActive && time === 0) {
+			setHasFinished(true)
+			setIsActive(false)
+			startNewChallenge()
 		}
+	}, [isActive, time])
 
-		if (time === 0) {
-			setActive(false)
+	useEffect(() => {
+		if (!activeChallenge) {
+			resetCountdown()
 		}
-	}, [active, time])
+	}, [activeChallenge])
 
 	return (
 		<div>
@@ -63,16 +75,37 @@ export function Countdown() {
 				</div>
 			</div>
 
-			<button
-				type='button'
-				className={`${styles.countdownButton} ${active ? styles.countdownButtonDisabled : styles.countdownButtonEnabled}`}
-				onClick={startCountdown}
-			>
-				{active ? 'Abandonar ciclo' : 'Iniciar um ciclo'}
-				{active && (
-					<FiX size={24} />
+			{ (hasFinished && activeChallenge) ? (
+				<button
+					disabled
+					className={`${styles.countdownButton}`}
+				>
+					Ciclo encerrado
+					<FaCheckCircle size={20} color="var(--green)" />
+				</button>
+			) : (
+					<>
+						{ isActive ? (
+							<button
+								type='button'
+								className={`${styles.countdownButton} ${styles.countdownButtonActive}`}
+								onClick={resetCountdown}
+							>
+								Abandonar ciclo
+								<FiX size={24} />
+							</button>
+						) : (
+								<button
+									type='button'
+									className={`${styles.countdownButton}`}
+									onClick={startCountdown}
+								>
+									Iniciar um ciclo
+								</button>
+							)
+						}
+					</>
 				)}
-			</button>
 		</div>
 	)
 }

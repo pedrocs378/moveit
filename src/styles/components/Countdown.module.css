@@ -42,6 +42,8 @@
 	height: 5rem;
 
 	margin-top: 2rem;
+	background: var(--blue);
+	color: var(--white);
 
 	display: flex;
 	align-items: center;
@@ -60,21 +62,23 @@
 	margin-left: 16px;
 }
 
-.countdownButtonEnabled {
-	background: var(--blue);
-	color: var(--white);
-}
-
-.countdownButtonEnabled:hover {
+.countdownButton:not(:disabled):hover {
 	background: var(--blue-dark);
 }
 
-.countdownButtonDisabled {
+.countdownButtonActive {
 	background: var(--white);
-	color: var(--text);
+	color: var(--title);
 }
 
-.countdownButtonDisabled:hover {
+.countdownButtonActive:not(:disabled):hover {
 	background: var(--red);
 	color: var(--white);
+}
+
+.countdownButton:disabled {
+	background: var(--white);
+	color: var(--text);
+	cursor: not-allowed;
+	border-bottom: 4px solid var(--green);
 }
