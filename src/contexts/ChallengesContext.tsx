@@ -1,4 +1,6 @@
-import { createContext, ReactNode, useCallback, useEffect, useMemo, useState } from 'react'
+import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+
+import { ModalContext } from './ModalContext'
 
 import challenges from '../../challenges.json'
 
@@ -27,6 +29,8 @@ interface ChallengesProviderProps {
 export const ChallengesContext = createContext<ChallengesContextData>({} as ChallengesContextData)
 
 export function ChallengesProvider({ children }: ChallengesProviderProps) {
+	const { showModal } = useContext(ModalContext)
+
 	const [level, setLevel] = useState(1)
 	const [currentExperience, setCurrentExperience] = useState(0)
 	const [challengesCompleted, setChallengesCompleted] = useState(0)
@@ -45,6 +49,12 @@ export function ChallengesProvider({ children }: ChallengesProviderProps) {
 		const newExperience = activeChallenge.amount - (experienceToNextLevel - currentExperience)
 		setLevel(level + 1)
 		setCurrentExperience(newExperience)
+		showModal({
+			type: 'levelup',
+			title: 'Parabéns',
+			description: 'Você alcançou um novo level.',
+			level: level + 1
+		})
 	}, [activeChallenge, experienceToNextLevel, currentExperience])
 
 	const startNewChallenge = useCallback(() => {
