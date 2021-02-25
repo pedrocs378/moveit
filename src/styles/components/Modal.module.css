@@ -15,6 +15,7 @@
 	height: 24rem;
 	width: 25rem;
 	border-radius: 5px;
+	box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.1);
 
 	display: flex;
 	flex-direction: column;
@@ -42,6 +43,8 @@
 	bottom: 50px;
 	left: 50%;
 	transform: translateX(-50%);
+	z-index: 1;
+	overflow: hidden;
 }
 
 .modalContainer .modal div.levelContainer span {
@@ -49,6 +52,8 @@
 	font-size: 8.75rem;
 	font-weight: 500;
 	color: var(--blue);
+	z-index: 2;
+	overflow: hidden;
 }
 
 .modalContainer .modal h1 {
