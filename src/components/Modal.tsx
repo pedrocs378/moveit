@@ -23,8 +23,8 @@ export function Modal({ message, isVisible }: ModalProps) {
 						</button>
 						{message.type === 'levelup' && (
 							<div className={styles.levelContainer}>
-								<img src="/union.svg" alt="Union" />
 								<span>{message.level}</span>
+								<img src="/icons/levelup.svg" alt="LevelUp" />
 							</div>
 						)}
 						<h1>{message.title}</h1>

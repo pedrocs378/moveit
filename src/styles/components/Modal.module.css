@@ -5,6 +5,7 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -13,7 +14,8 @@
 .modalContainer .modal {
 	background: var(--white);
 	height: 24rem;
-	width: 25rem;
+	width: 100%;
+	max-width: 25rem;
 	border-radius: 5px;
 	box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.1);
 
@@ -31,7 +33,7 @@
 	right: 2px;
 	background: transparent;
 	border: 0;
-	outline: none;
+	font-size: 0;
 }
 
 .modalContainer .modal div.levelContainer {
@@ -40,32 +42,27 @@
 
 .modalContainer .modal div.levelContainer img {
 	position: absolute;
-	bottom: 50px;
+	bottom: 35px;
 	left: 50%;
 	transform: translateX(-50%);
-	z-index: 1;
-	overflow: hidden;
 }
 
 .modalContainer .modal div.levelContainer span {
 	font-family: 'Inter';
 	font-size: 8.75rem;
-	font-weight: 500;
+	font-weight: 600;
 	color: var(--blue);
-	z-index: 2;
-	overflow: hidden;
 }
 
 .modalContainer .modal h1 {
-	font-size: 1.9rem;
-	font-weight: 600;
+	font-size: 2.25rem;
 	color: var(--title);
 }
 
 .modalContainer .modal p {
-	font-size: 1rem;
+	font-size: 1.25rem;
 	font-weight: 400;
-	margin-top: 5px;
+	margin-top: 0.25rem;
 	text-align: center;
 }
 
