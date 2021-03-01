@@ -1,0 +1,39 @@
+.loginContainer {
+	background: var(--blue);
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.loginContainer div.columnLogo {
+	display: flex;
+}
+
+.loginContainer div.columnSignIn {
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	justify-content: center;
+}
+
+.loginContainer div.columnSignIn > img {
+	margin-bottom: 6rem;
+}
+
+.loginContainer div.columnSignIn h2 {
+	color: var(--white);
+	font-size: 2.25rem;
+	margin-bottom: 1.5rem;
+}
+
+.loginContainer div.columnSignIn > div {
+	display: flex;
+	align-items: center;
+	margin-bottom: 2.5rem;
+}
+
+.loginContainer div.columnSignIn > div p {
+	margin-left: 1.5rem;
+	max-width: 254px;
+	color: var(--text-highlight);
+}

@@ -1,63 +1,31 @@
 import Head from 'next/head'
-import { GetServerSideProps } from 'next'
+import { InputUsername } from '../components/InputUsername'
 
-import { CompletedChallenges } from "../components/CompletedChallenges";
-import { Countdown } from "../components/Countdown";
-import { ExperienceBar } from "../components/ExpirenceBar";
-import { Profile } from "../components/Profile";
-import { ChallengeBox } from "../components/ChallengeBox";
+import styles from '../styles/pages/Login.module.css'
 
-import { CountdownProvider } from "../contexts/CountdownContext";
-import { ChallengesProvider } from '../contexts/ChallengesContext';
-
-import styles from '../styles/pages/Home.module.css'
-
-interface HomeProps {
-	level: number
-	currentExperience: number
-	challengesCompleted: number
-}
-
-export default function Home(props: HomeProps) {
+export default function App() {
 
 	return (
-		<ChallengesProvider
-			level={props.level}
-			currentExperience={props.currentExperience}
-			challengesCompleted={props.challengesCompleted}
-		>
-			<div className={styles.container}>
-				<Head>
-					<title>Início | move.it</title>
-				</Head>
+		<div className={styles.loginContainer}>
+			<Head>
+				<title>move.it</title>
+			</Head>
 
-				<ExperienceBar />
-
-				<CountdownProvider>
-					<section>
-						<div>
-							<Profile />
-							<CompletedChallenges />
-							<Countdown />
-						</div>
-						<div>
-							<ChallengeBox />
-						</div>
-					</section>
-				</CountdownProvider>
+			<div className={styles.columnLogo}>
+				<img src="/simbolo.svg" alt="Simbolo" />
 			</div>
-		</ChallengesProvider>
+			<div className={styles.columnSignIn}>
+				<img src="/white-logo-full.svg" alt="Logo" />
+				<h2>Bem-vindo</h2>
+				<div>
+					<img src="/icons/github.svg" alt="Github" />
+					<p>Faça login com seu Github para começar</p>
+				</div>
+
+				<InputUsername
+					placeholder="Digite seu username"
+				/>
+			</div>
+		</div>
 	)
-}
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-	const { level, currentExperience, challengesCompleted } = context.req.cookies
-
-	return {
-		props: {
-			level: Number(level),
-			currentExperience: Number(currentExperience),
-			challengesCompleted: Number(challengesCompleted)
-		}
-	}
 }
