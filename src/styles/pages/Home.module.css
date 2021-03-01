@@ -1,13 +1,9 @@
 .container {
-	display: grid;
-	grid-template-columns: 7rem 1fr;
-	height: 100vh;
-}
+	grid-area: content;
 
-.container main {
+	height: 100%;
 	max-width: 992px;
 	margin: 0 auto;
-	padding: 2.5rem 2rem;
 
 	display: flex;
 	flex-direction: column;
@@ -15,7 +11,7 @@
 	position: relative;
 }
 
-.container main section {
+.container section {
 	flex: 1;
 
 	display: grid;

@@ -1,39 +1,53 @@
 import Link from 'next/link'
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { FiAward, FiHome } from "react-icons/fi";
 
 import styles from '../styles/components/SideBar.module.css'
 
-interface CurrentRouteProps {
-	name: 'home' | 'leaderboard'
-}
+type CurrentRouteProps = 'home' | 'leaderboard'
 
 export function SideBar() {
-	const [currentRoute, setCurrentRoute] = useState<CurrentRouteProps>({
-		name: 'home'
-	})
+	const [currentRoute, setCurrentRoute] = useState<CurrentRouteProps>('home')
+
+	const router = useRouter()
+
+	useEffect(() => {
+		const route = router.route.replace('/', '')
+
+		if (route === 'home' || route === 'leaderboard') {
+			setCurrentRoute(route)
+		} else {
+			setCurrentRoute('home')
+		}
+	}, [router.route])
 
 	return (
 		<aside className={styles.sideBarContainer}>
 			<img src="/icons/logo.svg" alt="Logo" />
-			<div>
-				<button
-					className={currentRoute.name === 'home' && styles.currentRoute}
-					onClick={() => setCurrentRoute({ name: 'home' })}
-				>
+			<ul>
+				<li>
 					<Link href="/home">
-						<FiHome size={32} />
+						<a
+							className={currentRoute === 'home' ? styles.currentRoute : ''}
+							onClick={() => setCurrentRoute('home')}
+						>
+
+							<FiHome size={32} />
+						</a>
 					</Link>
-				</button>
-				<button
-					className={currentRoute.name === 'leaderboard' && styles.currentRoute}
-					onClick={() => setCurrentRoute({ name: 'leaderboard' })}
-				>
-					<Link href="/home">
-						<FiAward size={32} />
+				</li>
+				<li>
+					<Link href="/leaderboard">
+						<a
+							className={currentRoute === 'leaderboard' ? styles.currentRoute : ''}
+							onClick={() => setCurrentRoute('leaderboard')}
+						>
+							<FiAward size={32} />
+						</a>
 					</Link>
-				</button>
-			</div>
+				</li>
+			</ul>
 			<div />
 		</aside>
 	)

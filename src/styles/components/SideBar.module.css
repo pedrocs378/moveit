@@ -8,6 +8,10 @@
 	background: var(--white);
 	box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.05);
 
+	grid-area: sidebar;
+	position: fixed;
+	height: 100%;
+	width: 7rem;
 }
 
 .sideBarContainer img {
@@ -15,13 +19,13 @@
 	height: 2.625rem;
 }
 
-.sideBarContainer > div {
+.sideBarContainer > ul {
 	display: flex;
 	width: 100%;
 	flex-direction: column;
 }
 
-.sideBarContainer > div button {
+.sideBarContainer > ul li a {
 	height: 3.5rem;
 	position: relative;
 	display: flex;
@@ -30,16 +34,16 @@
 	background: transparent;
 }
 
-.sideBarContainer > div button svg {
+.sideBarContainer > ul li a svg {
 	color: var(--text);
 	opacity: 0.5;
 }
 
-.sideBarContainer > div button + button {
+.sideBarContainer > ul li + li {
 	margin-top: 8px;
 }
 
-.sideBarContainer > div button::before {
+.sideBarContainer > ul li a::before {
 	content: '';
 	position: absolute;
 	width: 4px;
@@ -53,15 +57,15 @@
 	transition: background-color 0.2s;
 }
 
-.sideBarContainer > div button:hover::before {
+.sideBarContainer > ul li a:hover::before {
 	background: var(--blue);
 }
 
-.sideBarContainer > div button.currentRoute svg {
+.sideBarContainer > ul li a.currentRoute svg {
 	color: var(--blue);
 	opacity: 1;
 }
 
-.sideBarContainer > div button.currentRoute::before  {
+.sideBarContainer > ul li a.currentRoute::before  {
 	background: var(--blue);
 }

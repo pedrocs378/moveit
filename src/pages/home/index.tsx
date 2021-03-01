@@ -1,8 +1,5 @@
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
-import Link from 'next/link'
-
-import { FiHome, FiAward } from 'react-icons/fi'
 
 import { ChallengeBox } from '../../components/ChallengeBox'
 import { CompletedChallenges } from '../../components/CompletedChallenges'
@@ -30,28 +27,25 @@ export default function Home(props: HomeProps) {
 			challengesCompleted={props.challengesCompleted}
 		>
 			<div className={styles.container}>
-				<SideBar />
+				<Head>
+					<title>Início | move.it</title>
+				</Head>
 
-				<main>
-					<Head>
-						<title>Início | move.it</title>
-					</Head>
+				<ExperienceBar />
 
-					<ExperienceBar />
+				<CountdownProvider>
+					<section>
+						<div>
+							<Profile />
+							<CompletedChallenges />
+							<Countdown />
+						</div>
+						<div>
+							<ChallengeBox />
+						</div>
+					</section>
+				</CountdownProvider>
 
-					<CountdownProvider>
-						<section>
-							<div>
-								<Profile />
-								<CompletedChallenges />
-								<Countdown />
-							</div>
-							<div>
-								<ChallengeBox />
-							</div>
-						</section>
-					</CountdownProvider>
-				</main>
 			</div>
 		</ChallengesProvider>
 	)
