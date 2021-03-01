@@ -1,5 +1,5 @@
-
 import { useContext } from 'react'
+import { FaTwitter } from 'react-icons/fa'
 
 import { ModalMessage, ModalContext } from '../contexts/ModalContext'
 
@@ -32,7 +32,7 @@ export function Modal({ message, isVisible }: ModalProps) {
 						{message.type === 'levelup' && (
 							<button type="button">
 								Compartilhar no twitter
-								<img src="/icons/twitter.svg" alt="Twitter" />
+								<FaTwitter size={20} />
 							</button>
 						)}
 					</div>

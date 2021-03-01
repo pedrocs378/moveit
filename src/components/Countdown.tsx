@@ -1,6 +1,6 @@
 import { useContext, useMemo } from 'react'
 import { FiX } from 'react-icons/fi'
-import { FaCheckCircle } from 'react-icons/fa'
+import { FaCheckCircle, FaPlay } from 'react-icons/fa'
 
 import { CountdownContext } from '../contexts/CountdownContext'
 
@@ -64,6 +64,7 @@ export function Countdown() {
 									onClick={startCountdown}
 								>
 									Iniciar um ciclo
+									<FaPlay size={18} color="var(--white)" />
 								</button>
 							)
 						}

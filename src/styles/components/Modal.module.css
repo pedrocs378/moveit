@@ -22,9 +22,11 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-end;
 
 	position: relative;
+
+	animation: fadeIn 800ms;
 }
 
 .modalContainer .modal button:first-child {
@@ -45,6 +47,7 @@
 	bottom: 35px;
 	left: 50%;
 	transform: translateX(-50%);
+	opacity: 0.5;
 }
 
 .modalContainer .modal div.levelContainer span {
@@ -52,6 +55,9 @@
 	font-size: 8.75rem;
 	font-weight: 600;
 	color: var(--blue);
+
+	text-shadow: 0 10px 16px rgba(89, 101, 224, 0.3);
+
 }
 
 .modalContainer .modal h1 {
@@ -68,22 +74,39 @@
 
 .modalContainer .modal button:last-child {
 	margin-top: 32px;
-	border: 0;
-	border-radius: 5px;
-	background: var(--blue-twitter);
-	color: var(--white);
+	background: var(--blue-light);
+	color: var(--blue-twitter);
+	border-top: 1px solid var(--gray-line);
 
-	height: 3.12rem;
-	width: 18.57rem;
+	font-weight: 600;
+
+	height: 5rem;
+	width: 100%;
 
 	display: flex;
 	align-items: center;
 	justify-content: center;
 
 	cursor: pointer;
-	outline: none;
+	transition: background-color 0.2s;
 }
 
-.modalContainer .modal button:last-child img {
-	margin-left: 17px;
+.modalContainer .modal button:last-child svg {
+	margin-left: 1rem;
+}
+
+.modalContainer .modal button:last-child:hover {
+	background: var(--blue-twitter);
+	color: var(--white);
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: scale(0.9, 0.9);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1, 1);
+	}
 }

@@ -40,7 +40,7 @@
 	color: var(--text-highlight);
 }
 
-.loginContainer div.columnSignIn .inputContainer {
+.loginContainer div.columnSignIn form .inputContainer {
 	height: 5rem;
 	background: linear-gradient(90deg, #4953B8 0%, rgba(73, 83, 184, 0.2) 100%);
 	border-radius: 5px;
@@ -49,33 +49,51 @@
 	align-items: center;
 }
 
-.loginContainer div.columnSignIn .inputContainer input {
+.loginContainer div.columnSignIn form .inputContainer input {
 	height: 100%;
 	width: calc(100% - 5rem);
 	background: transparent;
-	border: 0;
-	outline: none;
 	color: var(--white);
 	font-size: 1rem;
 	padding-left: 1.87rem;
 }
 
-.loginContainer div.columnSignIn .inputContainer input::placeholder {
+.loginContainer div.columnSignIn form .inputContainer input::placeholder {
 	color: var(--text-highlight);
 }
 
-.loginContainer div.columnSignIn .inputContainer button {
+.loginContainer div.columnSignIn form .inputContainer button {
 	height: 100%;
 	width: 5rem;
-	border: 0;
-	outline: none;
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	transition: filter 0.2s;
+}
+
+.loginContainer div.columnSignIn form .inputContainer button:hover {
+	filter: brightness(0.9);
+}
+
+.loginContainer div.columnSignIn form p {
+	text-align: center;
+	margin-top: 1rem;
+	color: var(--red-error);
+	display: flex;
+	align-items: center;
+}
+
+.loginContainer div.columnSignIn form .inputContainer button > svg {
+	height: 22px;
+	width: 22px;
 }
 
 @keyframes fadeIn {
 	from {
-		transform: translateX(-5%);
+		transform: translateX(-8%);
 		opacity: 0;
 	}
 
