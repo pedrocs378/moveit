@@ -1,9 +1,20 @@
 import Head from 'next/head'
-import { InputUsername } from '../components/InputUsername'
+import { useEffect, useState } from 'react'
+import { FiArrowRight } from 'react-icons/fi'
 
 import styles from '../styles/pages/Login.module.css'
 
 export default function App() {
+	const [username, setUsername] = useState('')
+	const [isFilled, setIsFilled] = useState(false)
+
+	useEffect(() => {
+		if (username.trim()) {
+			setIsFilled(true)
+		} else {
+			setIsFilled(false)
+		}
+	}, [username])
 
 	return (
 		<div className={styles.loginContainer}>
@@ -22,9 +33,21 @@ export default function App() {
 					<p>Faça login com seu Github para começar</p>
 				</div>
 
-				<InputUsername
-					placeholder="Digite seu username"
-				/>
+				<form className={styles.inputContainer}>
+					<input
+						type="text"
+						placeholder="Digite seu username"
+						value={username}
+						onChange={(event) => setUsername(event.target.value)}
+					/>
+					<button
+						style={{
+							backgroundColor: isFilled ? 'var(--green)' : 'var(--blue-dark)'
+						}}
+					>
+						<FiArrowRight size={25} color="var(--white)" />
+					</button>
+				</form>
 			</div>
 		</div>
 	)

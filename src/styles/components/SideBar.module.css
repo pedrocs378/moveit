@@ -1,0 +1,67 @@
+.sideBarContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+
+	padding: 2rem 0;
+	background: var(--white);
+	box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.05);
+
+}
+
+.sideBarContainer img {
+	width: 3rem;
+	height: 2.625rem;
+}
+
+.sideBarContainer > div {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+}
+
+.sideBarContainer > div button {
+	height: 3.5rem;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
+}
+
+.sideBarContainer > div button svg {
+	color: var(--text);
+	opacity: 0.5;
+}
+
+.sideBarContainer > div button + button {
+	margin-top: 8px;
+}
+
+.sideBarContainer > div button::before {
+	content: '';
+	position: absolute;
+	width: 4px;
+	background: transparent;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+
+	transition: background-color 0.2s;
+}
+
+.sideBarContainer > div button:hover::before {
+	background: var(--blue);
+}
+
+.sideBarContainer > div button.currentRoute svg {
+	color: var(--blue);
+	opacity: 1;
+}
+
+.sideBarContainer > div button.currentRoute::before  {
+	background: var(--blue);
+}
