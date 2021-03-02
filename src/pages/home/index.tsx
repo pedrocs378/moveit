@@ -6,7 +6,7 @@ import { CompletedChallenges } from '../../components/CompletedChallenges'
 import { Countdown } from '../../components/Countdown'
 import { ExperienceBar } from '../../components/ExpirenceBar'
 import { Profile } from '../../components/Profile'
-import { SideBar } from '../../components/SideBar'
+
 import { ChallengesProvider } from '../../contexts/ChallengesContext'
 import { CountdownProvider } from '../../contexts/CountdownContext'
 

@@ -1,4 +1,6 @@
 import '../styles/global.css'
+
+import { useMemo } from 'react'
 import { useRouter } from 'next/router'
 
 import { SideBar } from '../components/SideBar'
@@ -6,7 +8,6 @@ import { SideBar } from '../components/SideBar'
 import { AppProvider } from '../contexts'
 
 import styles from '../styles/pages/App.module.css'
-import { useMemo } from 'react'
 
 function MyApp({ Component, pageProps }) {
 	const router = useRouter()

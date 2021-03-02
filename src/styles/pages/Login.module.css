@@ -78,7 +78,7 @@
 	filter: brightness(0.9);
 }
 
-.loginContainer div.columnSignIn form p {
+.loginContainer div.columnSignIn form > p {
 	text-align: center;
 	margin-top: 1rem;
 	color: var(--red-error);
@@ -86,9 +86,10 @@
 	align-items: center;
 }
 
-.loginContainer div.columnSignIn form .inputContainer button > svg {
-	height: 22px;
+.loginContainer div.columnSignIn form > p svg {
 	width: 22px;
+	height: 22px;
+	margin-right: 0.5rem;
 }
 
 @keyframes fadeIn {

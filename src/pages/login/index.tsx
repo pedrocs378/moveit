@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useContext, useEffect, useState } from 'react'
 import { FiArrowRight } from 'react-icons/fi'
 import { BiErrorCircle } from 'react-icons/bi'
 import ReactLoading from 'react-loading'
@@ -6,15 +6,15 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import axios from 'axios'
 
+import { UsersContext } from '../../contexts/UsersContext'
+
 import styles from '../../styles/pages/Login.module.css'
 
 export default function Login() {
 	const [username, setUsername] = useState('')
-	const [loading, setLoading] = useState(false)
 	const [isFilled, setIsFilled] = useState(false)
-	const [isErrored, setIsErrored] = useState(false)
 
-	const router = useRouter()
+	const { loading, isErrored, signIn } = useContext(UsersContext)
 
 	useEffect(() => {
 		if (username.trim()) {
@@ -27,18 +27,7 @@ export default function Login() {
 	async function handleSubmit(event: FormEvent) {
 		event.preventDefault()
 
-		try {
-			setLoading(true)
-
-			const response = await axios.post('/api/users/signin', { username })
-
-			console.log(response.data)
-			// router.push('/home')
-		} catch {
-			setIsErrored(true)
-		} finally {
-			setLoading(false)
-		}
+		await signIn(username)
 	}
 
 	return (

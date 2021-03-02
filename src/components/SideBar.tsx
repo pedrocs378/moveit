@@ -1,20 +1,19 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FiAward, FiHome, FiPower } from "react-icons/fi";
+import { UsersContext } from '../contexts/UsersContext';
 
 import styles from '../styles/components/SideBar.module.css'
 
 type CurrentRouteProps = 'home' | 'leaderboard'
 
 export function SideBar() {
+	const { signOut } = useContext(UsersContext)
+
 	const [currentRoute, setCurrentRoute] = useState<CurrentRouteProps>('home')
 
 	const router = useRouter()
-
-	function handleLogOut() {
-		router.push('/login')
-	}
 
 	useEffect(() => {
 		const route = router.route.replace('/', '')
@@ -52,7 +51,7 @@ export function SideBar() {
 					</Link>
 				</li>
 			</ul>
-			<button type="button" onClick={handleLogOut}>
+			<button type="button" onClick={signOut}>
 				<FiPower color="#000" />
 			</button>
 		</aside>
