@@ -52,13 +52,17 @@ export default function Home(props: HomeProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-	const { level, currentExperience, challengesCompleted } = context.req.cookies
+	const { user } = context.req.cookies
 
-	return {
-		props: {
-			level: Number(level),
-			currentExperience: Number(currentExperience),
-			challengesCompleted: Number(challengesCompleted)
+	if (user) {
+		const parsedUser = JSON.parse(user)
+
+		return {
+			props: {
+				level: parsedUser.challenges?.level || null,
+				currentExperience: parsedUser.challenges?.currentExperience || null,
+				challengesCompleted: parsedUser.challenges?.challengesCompleted || null
+			}
 		}
 	}
 }

@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-import axios from 'axios'
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie'
+import axios from 'axios'
 
 export interface User {
 	githubId: number
@@ -10,12 +10,24 @@ export interface User {
 	login: string
 }
 
+interface Challenge {
+	level: number
+	challengesCompleted: number
+	currentExperience: number
+}
+
+interface UpdateUserProps {
+	githubId: number
+	challengeData: Challenge
+}
+
 interface UsersContextProps {
 	user: User
 	loading: boolean
 	isErrored: boolean
 	signIn: (username: string) => Promise<void>
 	signOut: () => void
+	updateUserChallenges: (userData: UpdateUserProps) => Promise<void>
 }
 
 interface UsersProviderProps {
@@ -27,6 +39,7 @@ export const UsersContext = createContext<UsersContextProps>({} as UsersContextP
 export function UsersProvider({ children }: UsersProviderProps) {
 	const [user, setUser] = useState<User>({} as User)
 	const [loading, setLoading] = useState(false)
+	const [loadingUpdate, setLoadingUpdate] = useState(false)
 	const [isErrored, setIsErrored] = useState(false)
 
 	const router = useRouter()
@@ -54,7 +67,7 @@ export function UsersProvider({ children }: UsersProviderProps) {
 				throw new Error()
 			}
 
-			const response = await axios.post('/api/users/signin', { username })
+			const response = await axios.post('/api/users', { username })
 
 			Cookies.set('user', response.data.user)
 			setUser(response.data.user)
@@ -64,6 +77,22 @@ export function UsersProvider({ children }: UsersProviderProps) {
 			setIsErrored(true)
 		} finally {
 			setLoading(false)
+		}
+	}
+
+	async function updateUserChallenges({ githubId, challengeData }: UpdateUserProps) {
+		try {
+			setLoadingUpdate(true)
+			console.log(githubId)
+			const response = await axios.put('/api/users', {
+				githubId,
+				...challengeData
+			})
+
+			Cookies.set('user', response.data)
+			setUser(response.data)
+		} finally {
+			setLoadingUpdate(false)
 		}
 	}
 
@@ -80,7 +109,8 @@ export function UsersProvider({ children }: UsersProviderProps) {
 			loading,
 			isErrored,
 			signIn,
-			signOut
+			signOut,
+			updateUserChallenges,
 		}}>
 			{children}
 		</UsersContext.Provider>

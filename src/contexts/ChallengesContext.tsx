@@ -1,7 +1,15 @@
-import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import Cookies from 'js-cookie'
+import {
+	createContext,
+	ReactNode,
+	useCallback,
+	useContext,
+	useEffect,
+	useMemo,
+	useState
+} from 'react'
 
 import { ModalContext } from './ModalContext'
+import { UsersContext } from './UsersContext'
 
 import challenges from '../../challenges.json'
 
@@ -28,13 +36,13 @@ interface ChallengesProviderProps {
 	level: number
 	currentExperience: number
 	challengesCompleted: number
-
 }
 
 export const ChallengesContext = createContext<ChallengesContextData>({} as ChallengesContextData)
 
 export function ChallengesProvider({ children, ...rest }: ChallengesProviderProps) {
 	const { showModal } = useContext(ModalContext)
+	const { user, updateUserChallenges } = useContext(UsersContext)
 
 	const [level, setLevel] = useState(rest.level ?? 1)
 	const [currentExperience, setCurrentExperience] = useState(rest.currentExperience ?? 0)
@@ -51,9 +59,14 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
 	}, [])
 
 	useEffect(() => {
-		Cookies.set('level', String(level))
-		Cookies.set('currentExperience', String(currentExperience))
-		Cookies.set('challengesCompleted', String(challengesCompleted))
+		updateUserChallenges({
+			githubId: user.githubId,
+			challengeData: {
+				level,
+				challengesCompleted,
+				currentExperience
+			}
+		})
 	}, [level, currentExperience, challengesCompleted])
 
 	const levelUp = useCallback(() => {
