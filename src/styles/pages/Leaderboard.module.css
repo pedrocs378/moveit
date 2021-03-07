@@ -24,11 +24,11 @@
 	text-transform: uppercase;
 }
 
-.leaderboardContainer .gridContainer .gridTitles th:first-child {
+.leaderboardContainer .gridContainer .gridTitles p.gridTitleColumn:first-child {
 	text-align: center;
 }
 
-.leaderboardContainer .gridContainer .gridTitles th:not(:first-child) {
+.leaderboardContainer .gridContainer .gridTitles p.gridTitleColumn:not(:first-child) {
 	padding: 0 1.4rem;
 }
 
@@ -41,52 +41,52 @@
 	grid-template-columns: 4.5rem 31.4rem 1fr 1fr;
 }
 
-.leaderboardContainer .gridContainer .gridUserRow td {
+.leaderboardContainer .gridContainer .gridUserRow div.gridUserColumn {
 	display: flex;
 	align-items: center;
 	background: var(--white);
 }
 
-.leaderboardContainer .gridContainer .gridUserRow td:first-child {
+.leaderboardContainer .gridContainer .gridUserRow div.gridUserColumn:first-child {
 	font-weight: 500;
 	font-size: 1.5rem;
 	display: flex;
 	justify-content: center;
 }
 
-.leaderboardContainer .gridContainer .gridUserRow td:nth-child(2) {
+.leaderboardContainer .gridContainer .gridUserRow div.gridUserColumn:nth-child(2) {
 	margin-left: 4px;
 }
 
-.leaderboardContainer .gridContainer .gridUserRow td:not(:first-child) {
+.leaderboardContainer .gridContainer .gridUserRow div.gridUserColumn:not(:first-child) {
 	padding: 0 1.4rem;
 }
 
-.leaderboardContainer .gridContainer .gridUserRow td img {
+.leaderboardContainer .gridContainer .gridUserRow div.gridUserColumn img {
 	width: 4rem;
 	height: 4rem;
 	border-radius: 50%;
 }
 
-.leaderboardContainer .gridContainer .gridUserRow td > div {
+.leaderboardContainer .gridContainer .gridUserRow div.gridUserColumn > div {
 	display: flex;
 	flex-direction: column;
 	margin-left: 1rem;
 }
 
-.leaderboardContainer .gridContainer .gridUserRow td > div p {
+.leaderboardContainer .gridContainer .gridUserRow div.gridUserColumn > div p {
 	font-weight: 400;
 	font-size: 1rem;
 	margin-top: 7px;
 }
 
-.leaderboardContainer .gridContainer .gridUserRow td > div p img {
+.leaderboardContainer .gridContainer .gridUserRow div.gridUserColumn > div p img {
 	width: 1rem;
 	height: 0.9rem;
 	margin-right: 9px;
 }
 
-.leaderboardContainer .gridContainer .gridUserRow td span {
+.leaderboardContainer .gridContainer .gridUserRow div.gridUserColumn span {
 	color: var(--blue);
 	margin-right: 5px;
 }

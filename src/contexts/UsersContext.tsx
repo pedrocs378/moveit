@@ -81,19 +81,13 @@ export function UsersProvider({ children }: UsersProviderProps) {
 	}
 
 	async function updateUserChallenges({ githubId, challengeData }: UpdateUserProps) {
-		try {
-			setLoadingUpdate(true)
-			console.log(githubId)
-			const response = await axios.put('/api/users', {
-				githubId,
-				...challengeData
-			})
+		const response = await axios.put('/api/users', {
+			githubId,
+			...challengeData
+		})
 
-			Cookies.set('user', response.data)
-			setUser(response.data)
-		} finally {
-			setLoadingUpdate(false)
-		}
+		Cookies.set('user', response.data)
+		setUser(response.data)
 	}
 
 	function signOut() {
