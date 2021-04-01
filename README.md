@@ -1,7 +1,6 @@
 <h1 align="center">
   <img alt="move.it" title="move.it" src=".github/logo.png" />
 </h1>
-https://moveit-nine-zeta.vercel.app/
 
 ## :rocket: Tecnologias
 
